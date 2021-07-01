@@ -1,0 +1,22 @@
+@layout('layouts.main')
+
+@section('title')
+RamadhanAdonis - Post your Users
+@endsection
+
+@section('content')
+  <h1>All Users</h1>
+
+  @each(user in users)
+  <div class="user-container">
+    <div class="blank"></div>
+    <div class="user-info">
+      <h3>{{ user.user_name }}</h3>
+      <p>{{ user.first_name }} {{ user.last_name }}</p>
+      <p>{{ user.email }}</p>
+      <p>{{ user.division }}</p>
+    </div>
+  </div>
+  @endeach
+
+@endsection

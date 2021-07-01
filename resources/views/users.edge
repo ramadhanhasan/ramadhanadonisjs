@@ -1,0 +1,83 @@
+@layout('layouts.main')
+
+@section('title')
+RamadhanAdonis - Post your User
+@endsection
+
+@section('extracss')
+{{ style('forms') }}
+@endsection
+
+@section('content')
+  <h1>Post User</h1>
+
+
+  <div class="user-container">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+        <form action="{{ route('UserListController.create') }}" method="POST">
+          {{ csrfField() }}
+
+          <label for="fname">First Name</label>
+          <input type="text" name="fname" value="{{ old('fname', '') }}">
+          @if(hasErrorFor('fname'))
+              <span>
+                  {{ getErrorFor('fname') }}
+              </span>
+          @endif
+
+          <label for="lname">Last Name</label>
+          <input type="text" name="lname" value="{{ old('lname', '') }}">
+          @if(hasErrorFor('lname'))
+              <span>
+                  {{ getErrorFor('lname') }}
+              </span>
+          @endif
+
+          <label for="email">Email</label>
+          <input type="text" name="email" value="{{ old('email', '') }}">
+          @if(hasErrorFor('email'))
+              <span>
+                  {{ getErrorFor('email') }}
+              </span>
+          @endif
+
+          <label for="username">Username</label>
+          <input type="text" name="username" value="{{ old('username', '') }}">
+          @if(hasErrorFor('username'))
+              <span>
+                  {{ getErrorFor('username') }}
+              </span>
+          @endif
+
+          <label for="division">Division</label>
+          <input type="text" name="division">
+          @if(hasErrorFor('division'))
+              <span>
+                  {{ getErrorFor('division') }}
+              </span>
+          @endif
+
+          <button type="submit">Submit User</button>
+        </form>
+    </div>
+
+<h2>My User List</h2>
+
+  @each(user in users)
+  <div class="user-container2">
+    <div class="blank"></div>
+    <div class="user-info">
+      <h3>{{ user.user_name }}</h3>
+      <p>{{ user.first_name }} {{ user.last_name }}</p>
+      <p>{{ user.email }}</p>
+      <p>{{ user.division }}</p>
+      <ul>
+          <li><a href="{{ route('UserListController.delete', { id: user.id }) }}">Delete</a></li>
+          <li><a href="{{ route('UserListController.edit', { id: user.id }) }}">Edit</a></li>
+      </ul>
+    </div>
+  </div>
+  @endeach
+@endsection

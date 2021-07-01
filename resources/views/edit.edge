@@ -1,0 +1,64 @@
+@layout('layouts.main')
+
+@section('title')
+JobPostr - Edit User
+@endsection
+
+@section('extracss')
+{{ style('forms') }}
+@endsection
+
+@section('content')
+  <h1>Edit User</h1>
+
+  <div class="job-container">
+    @if(flashMessage('message'))
+        <span>{{ flashMessage('message') }}</span>
+    @endif
+        <form action="{{ route('UserListController.update', { id: user.id }) }}" method="POST">
+          {{ csrfField() }}
+
+          <label for="fname">First Name</label>
+          <input type="text" name="fname" value="{{ user.first_name }}">
+          @if(hasErrorFor('fname'))
+              <span>
+                  {{ getErrorFor('fname') }}
+              </span>
+          @endif
+
+          <label for="lname">Last Name</label>
+          <input type="text" name="lname" value="{{ user.last_name }}">
+          @if(hasErrorFor('lname'))
+              <span>
+                  {{ getErrorFor('lname') }}
+              </span>
+          @endif
+
+          <label for="email">Email</label>
+          <input type="text" name="email" value="{{ user.email }}">
+          @if(hasErrorFor('email'))
+              <span>
+                  {{ getErrorFor('email') }}
+              </span>
+          @endif
+
+          <label for="username">Username</label>
+          <input type="text" name="username" value="{{ user.username }}">
+          @if(hasErrorFor('username'))
+              <span>
+                  {{ getErrorFor('username') }}
+              </span>
+          @endif
+
+          <label for="division">Division</label>
+          <input type="text" name="division" value="{{ user.division }}">
+          @if(hasErrorFor('division'))
+              <span>
+                  {{ getErrorFor('division') }}
+              </span>
+          @endif
+
+          <button type="submit">Update User</button><br>
+        </form>
+    </div>
+@endsection
