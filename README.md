@@ -21,6 +21,8 @@ Use the adonis command to install the blueprint
 
 ### Migrations
 
+Add new database Mysql with database name : ramadhanadonisjs
+
 Run the following command to run startup migrations.
 
 ```js
@@ -32,4 +34,4 @@ Run the following command to run server app.
 ```bash
 adonis serve --dev
 ```
-"# ramadhanadonisjs" 
+ 
